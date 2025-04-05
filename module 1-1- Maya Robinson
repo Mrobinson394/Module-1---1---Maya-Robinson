@@ -1,0 +1,10 @@
+def print_odd_desc(n):
+    if n <= 0:
+        return
+    if n % 2 != 0:
+        print(n, end=', ' if n > 1 else '')
+    print_odd_desc(n - 1)
+
+# Example usage
+n = 12
+print_odd_desc(n)
