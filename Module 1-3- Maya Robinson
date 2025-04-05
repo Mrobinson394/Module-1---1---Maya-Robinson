@@ -1,0 +1,15 @@
+def linear_sort(arr):
+    sorted_arr = []
+    while arr:
+        min_val = min(arr)
+        sorted_arr.append(min_val)
+        arr.remove(min_val)
+    return sorted_arr
+
+# Example usage
+unsorted = [5, 3, 8, 1, 2]
+sorted_list = linear_sort(unsorted.copy())
+print("Sorted list:", sorted_list)
+
+# Time Complexity: O(n^2)
+# Space Complexity: O(n)
