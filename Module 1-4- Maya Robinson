@@ -1,0 +1,46 @@
+import matplotlib.pyplot as plt
+import numpy as np
+
+def insertion_sort(arr):
+    """Performs insertion sort and records each step for visualization."""
+    steps = []
+    n = len(arr)
+
+    # Make a copy of the original array for visualization
+    sorted_arr = arr.copy()
+    
+    for i in range(1, n):
+        key = sorted_arr[i]
+        j = i - 1
+        
+        # Shift elements that are greater than key
+        while j >= 0 and sorted_arr[j] > key:
+            sorted_arr[j + 1] = sorted_arr[j]
+            j -= 1
+        
+        sorted_arr[j + 1] = key
+        steps.append(sorted_arr.copy())  # Save step for visualization
+
+    return sorted_arr, steps
+
+def plot_steps(steps):
+    """Generates a visualization for the sorting process."""
+    fig, axes = plt.subplots(len(steps), 1, figsize=(6, 2 * len(steps)))
+
+    if len(steps) == 1:
+        axes = [axes]  # Ensure it's iterable for a single step
+
+    for i, step in enumerate(steps):
+        axes[i].bar(range(len(step)), step, color="blue")
+        axes[i].set_title(f"Step {i+1}: {step}")
+    
+    plt.tight_layout()
+    plt.savefig("insertion_sort_steps.png")
+    plt.show()
+
+if __name__ == "__main__":
+    numbers = [31, 41, 59, 26, 41, 58]  # Given sequence
+    sorted_arr, steps = insertion_sort(numbers)
+
+    print("Sorted array:", sorted_arr)
+    plot_steps(steps)
