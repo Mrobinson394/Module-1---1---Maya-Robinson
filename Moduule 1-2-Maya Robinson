@@ -1,0 +1,17 @@
+def binary_search(X, start, last, key):
+    if start > last:
+        return -1  # Not found
+
+    mid = (start + last) // 2
+    if X[mid] == key:
+        return mid
+    elif X[mid] < key:
+        return binary_search(X, mid + 1, last, key)
+    else:
+        return binary_search(X, start, mid - 1, key)
+
+# Example usage
+X = [2, 5, 8, 12, 14, 15]
+n = 14
+result = binary_search(X, 0, len(X) - 1, n)
+print(f"Index of {n}: {result}")
